@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     getResults() {
-      const path = 'http://localhost:5000/find';
+      const path = 'http://192.168.31.7:5000/find';
       axios.post(path)
         .then((res) => {
           var tmp = [];
