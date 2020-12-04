@@ -4,7 +4,7 @@
         <div class="card mb-4 shadow-sm" v-for="item in items" :key="item.datetime">
           <img class="avatar" v-bind:src="item.image_url">
           <h1 class="card-title">{{ item.username }}</h1>
-          <p class="list-unstyled">{{ item.datetime }}</p>
+          <p class="list-unstyled">{{ item.time }}</p>
           <p class="list-unstyled">{{ item.location }}</p>
         </div>
     </div>
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     getResults() {
-      const path = 'http://192.168.31.7:5000/find';
+      const path = 'http://192.168.31.12:5000/find';
       axios.post(path)
         .then((res) => {
           var tmp = [];
@@ -32,8 +32,12 @@ export default {
               tmp.push(element)
             }
           });
-          this.items = tmp.slice(-3);
-          console.log(tmp.slice(-3))
+          this.items = tmp.slice(-3)
+          console.log(this.items)
+          if (tmp.slice(-1)["status"] == "First") {
+            let utterance = new SpeechSynthesisUtterance(tmp.slice(-1)["username"]);
+            speechSynthesis.speak(utterance);
+          }
         })
         .catch((error) => {
           console.error(error);
