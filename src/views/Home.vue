@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     getResults() {
-      const path = 'http://192.168.31.12:5000/find';
+      const path = '/find';
       axios.post(path)
         .then((res) => {
           var tmp = [];
