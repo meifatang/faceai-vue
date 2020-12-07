@@ -2,7 +2,7 @@
   <div class="container">
     <div class="card-deck mb-3 text-center">
         <div class="card mb-4 shadow-sm" v-for="item in items" :key="item.datetime">
-          <img class="avatar" v-bind:src="item.image_url">
+          <img class="avatar" v-bind:src="'http://localhost:5000/static/33cn/' + item.username + '.jpg'">
           <h1 class="card-title">{{ item.username }}</h1>
           <p class="list-unstyled">{{ item.time }}</p>
           <p class="list-unstyled">{{ item.location }}</p>
