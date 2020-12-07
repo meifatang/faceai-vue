@@ -2,7 +2,9 @@
   <div class="container">
     <div class="card-deck mb-3 text-center">
         <div class="card mb-4 shadow-sm" v-for="item in items" :key="item.datetime">
-          <img class="avatar" v-bind:src="'http://localhost:5000/static/33cn/' + item.username + '.jpg'">
+          <div class="avatar-wrapper">
+            <img v-bind:src="'/static/33cn/' + item.username + '.jpg'">
+          </div>
           <h1 class="card-title">{{ item.username }}</h1>
           <p class="list-unstyled">{{ item.time }}</p>
           <p class="list-unstyled">{{ item.location }}</p>
@@ -58,11 +60,19 @@ export default {
 .container {
   margin-top: 200px;
 }
-.avatar {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.avatar-wrapper {
+  position: relative;
   width: 100px;
-  clip-path: circle(50px at center);
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
   align-self: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.avatar-wrapper img {
+  width: 100%;
+  height: auto;
+  margin-top: -50px;
 }
 </style>
