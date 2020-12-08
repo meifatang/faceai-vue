@@ -8,6 +8,7 @@
           <h1 class="card-title">{{ item.username }}</h1>
           <p class="list-unstyled">{{ item.time }}</p>
           <p class="list-unstyled">{{ item.location }}</p>
+          <p v-if="item.status == 'First' || item.status == 'Frist'">第一次进入，打卡成功</p>
         </div>
     </div>
   </div>
@@ -36,9 +37,9 @@ export default {
             }
           });
           this.items = tmp.slice(-3)
-          if (res.tag != tmp.slice(-1)[0]["username"]) {
+          if (this.tag != tmp.slice(-1)[0]["username"]) {
             if (tmp.slice(-1)[0]["status"] == "First" || tmp.slice(-1)[0]["status"] == "Frist") {
-              res.tag == tmp.slice(-1)[0]["username"]
+              this.tag == tmp.slice(-1)[0]["username"]
               let utterance = new SpeechSynthesisUtterance(tmp.slice(-1)[0]["username"]);
               speechSynthesis.speak(utterance);
               console.log(tmp.slice(-1)[0]["username"], "First Time")
@@ -78,5 +79,8 @@ export default {
   width: 100%;
   height: auto;
   margin-top: -50px;
+}
+.card:last-child {
+  background-color: yellow;
 }
 </style>
