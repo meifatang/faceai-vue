@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       items: '',
+      tag: ''
     };
   },
   methods: {
@@ -35,10 +36,14 @@ export default {
             }
           });
           this.items = tmp.slice(-3)
-          // if (tmp.slice(-1)[0]["status"] == "First" || tmp.slice(-1)[0]["status"] == "Frist") {
-          //   let utterance = new SpeechSynthesisUtterance(tmp.slice(-1)[0]["username"]);
-          //   speechSynthesis.speak(utterance);
-          // }
+          if (res.tag != tmp.slice(-1)[0]["username"]) {
+            if (tmp.slice(-1)[0]["status"] == "First" || tmp.slice(-1)[0]["status"] == "Frist") {
+              res.tag == tmp.slice(-1)[0]["username"]
+              let utterance = new SpeechSynthesisUtterance(tmp.slice(-1)[0]["username"]);
+              speechSynthesis.speak(utterance);
+              console.log(tmp.slice(-1)[0]["username"], "First Time")
+            }
+          }
         })
         .catch((error) => {
           console.error(error);
@@ -50,7 +55,7 @@ export default {
   mounted() {
      setInterval(() => {
       this.getResults();
-    }, 1000)
+    }, 500)
   }
 };
 </script>
