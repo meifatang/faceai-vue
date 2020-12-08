@@ -35,11 +35,10 @@ export default {
             }
           });
           this.items = tmp.slice(-3)
-          console.log(this.items)
-          if (tmp.slice(-1)["status"] == "First") {
-            let utterance = new SpeechSynthesisUtterance(tmp.slice(-1)["username"]);
-            speechSynthesis.speak(utterance);
-          }
+          // if (tmp.slice(-1)[0]["status"] == "First" || tmp.slice(-1)[0]["status"] == "Frist") {
+          //   let utterance = new SpeechSynthesisUtterance(tmp.slice(-1)[0]["username"]);
+          //   speechSynthesis.speak(utterance);
+          // }
         })
         .catch((error) => {
           console.error(error);
