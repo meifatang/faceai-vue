@@ -56,7 +56,7 @@ export default {
   mounted() {
      setInterval(() => {
       this.getResults();
-    }, 500)
+    }, 1000)
   }
 };
 </script>
